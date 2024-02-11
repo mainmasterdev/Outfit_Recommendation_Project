@@ -32,10 +32,10 @@ from webcolors import (
     
 # load pre-trained models
 # please change them to your local path when load
-sub_model = tf.keras.models.load_model('/Users/pingkefan/Desktop/ALL_MODELS/model_sub')
-top_model = tf.keras.models.load_model('/Users/pingkefan/Desktop/ALL_MODELS/model_top')
-bottom_model = tf.keras.models.load_model('/Users/pingkefan/Desktop/ALL_MODELS/model_bottom')
-foot_model = tf.keras.models.load_model('/Users/pingkefan/Desktop/ALL_MODELS/model_shoes')
+sub_model = tf.keras.models.load_model('../ALL_MODELS/model_sub')
+top_model = tf.keras.models.load_model('../ALL_MODELS/model_top')
+bottom_model = tf.keras.models.load_model('../ALL_MODELS/model_bottom')
+foot_model = tf.keras.models.load_model('../ALL_MODELS/model_shoes')
 
 
 # all output possibilities of the model for subsequent matching
@@ -168,6 +168,7 @@ def single_classification(single_path):
     
     #reshape img to apply the model
     if img.shape != (80,60,3):
+        print(path)
         img = image.load_img(path, target_size=(80,60,3))
 
     train_images[0] = img

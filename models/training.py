@@ -9,22 +9,23 @@ Original file is located at
 
 # packages in this training file
 
-from training_module import *
+#from training_module import *
+
+from .train_module import *
 
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from keras.preprocessing import image
+from keras.preprocessing.image import ImageDataGenerator
 
 import tensorflow as tf
-from tensorflow.keras import layers
-from tensorflow.keras import losses
-from tensorflow import keras
+from keras import layers
+from keras import losses
 
-from tensorflow.keras.preprocessing import image
+from keras.preprocessing import image
 
-from tensorflow.keras.layers.experimental.preprocessing import TextVectorization
-from tensorflow.keras.layers.experimental.preprocessing import StringLookup
+from keras.layers.experimental.preprocessing import TextVectorization
+from keras.layers.experimental.preprocessing import StringLookup
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
@@ -149,6 +150,15 @@ bottom_history = bottom_base_model.fit(bottom_train,
 bottom_base_model.evaluate(bottom_test)
 
 bottom_base_model.save("/content/drive/MyDrive/models/model_2.2")
+
+foot_history = foot_base_model.fit(foot_train, 
+                    epochs=15, 
+                    steps_per_epoch = 50,
+                    validation_data = foot_val)
+
+foot_base_model.evaluate(foot_test)
+
+foot_base_model.save("/content/drive/MyDrive/models/model_2.2")
 
 
 

@@ -1,18 +1,19 @@
 
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow import keras
+from keras.preprocessing import image
+from keras.preprocessing.image import ImageDataGenerator
 
 import tensorflow as tf
-from tensorflow.keras import layers
-from tensorflow.keras import losses
+from keras import layers
+from keras import losses
 from tensorflow import keras
 
-from tensorflow.keras.preprocessing import image
+from keras.preprocessing import image
 
-from tensorflow.keras.layers.experimental.preprocessing import TextVectorization
-from tensorflow.keras.layers.experimental.preprocessing import StringLookup
+from keras.layers.experimental.preprocessing import TextVectorization
+from keras.layers.experimental.preprocessing import StringLookup
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
@@ -88,9 +89,9 @@ def df_drop(styles, col, item):
     return styles
 
 def get_df():
-  """
-  this function get and clean the data, return a dataframe
-  """
+    """
+    this function get and clean the data, return a dataframe
+    """
     styles = pd.read_csv("styles.csv", error_bad_lines=False)
     styles = styles.drop(["productDisplayName"],axis = 1) #drop useless column, we do not need name to do recommendation
     styles = styles.drop(["year"],axis = 1) #drop useless column, we do not need year to do recommendation
@@ -105,12 +106,12 @@ def get_df():
 
   
   
-  def make_input_array_subcate(df):
-  """
-  This function get the dataset 
-  input: dataframe
-  output: dataset
-  """
+def make_input_array_subcate(df):
+    """
+    This function get the dataset 
+    input: dataframe
+    output: dataset
+    """
     train_images = np.zeros((len(df.id),80,60,3))
     for i in range(len(df.id)):
         
@@ -140,13 +141,13 @@ def get_df():
 
     return data
 def make_branch(res_input, n_out, act_type, name):
-  """
-  This function build the branch
-  input: res_input, keras.Input
-      n_out: length of output
-      act_type: type of activation
-      name: output name
-  """
+    """
+    This function build the branch
+    input: res_input, keras.Input
+        n_out: length of output
+        act_type: type of activation
+        name: output name
+    """
     z = layers.Dense(512, activation="relu")(res_input)
     z = layers.Dense(256, activation='relu')(z)
     z = layers.Dense(128, activation='relu')(z)
@@ -157,12 +158,12 @@ def make_branch(res_input, n_out, act_type, name):
     return z
 
 def build_model(width, height):
-  """
-  This function build a model
-  input: width, width of image
-      height, height of image
-  output: machinelearning model
-  """
+    """
+    This function build a model
+    input: width, width of image
+        height, height of image
+    output: machinelearning model
+    """
 
     # -------------------------
     res50 = keras.applications.ResNet50(weights='imagenet', include_top=False, input_shape=(80,60,3))
@@ -227,11 +228,11 @@ def my_le(styles):
   return styles,articleTypeLB,genderLB,baseColourLB,seasonLB,usageLB
 
 def get_234_df(x):
-  """
-  This function get the dataframe for model2.1,2.2,2.3
-  input: x, the col we want
-  output: the dataframe only for x
-  """
+    """
+    This function get the dataframe for model2.1,2.2,2.3
+    input: x, the col we want
+    output: the dataframe only for x
+    """
     styles = pd.read_csv("styles.csv", error_bad_lines=False)
     styles = styles.drop(["productDisplayName"],axis = 1)
     styles = styles.drop(["year"],axis = 1)
@@ -248,9 +249,9 @@ def get_234_df(x):
     return styles
 
 def build_model(width, height, articleTypeLB,genderLB,baseColourLB,seasonLB,usageLB):
-  """
-  build the machine learning model. similar to the previous one
-  """
+    """
+    build the machine learning model. similar to the previous one
+    """
 
     # -------------------------
     res50 = keras.applications.ResNet50(weights='imagenet', include_top=False, input_shape=(80,60,3))
@@ -275,9 +276,9 @@ def build_model(width, height, articleTypeLB,genderLB,baseColourLB,seasonLB,usag
     return model
 
 def make_input_array_2(df):
-  """
-  make the input dataset. similar to the previous one.
-  """
+    """
+    make the input dataset. similar to the previous one.
+    """
     train_images = np.zeros((len(df.id),80,60,3))
     for i in range(len(df.id)):
         
